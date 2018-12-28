@@ -2,9 +2,11 @@
 
 describe("Airport", function() {
   var airport;
+  var plane;
 
   beforeEach(function() {
     airport = new Airport();
+    plane = jasmine.createSpyObj('Plane', ['land']);
   });
 
   describe("Capacity", function() {
@@ -23,11 +25,14 @@ describe("Airport", function() {
   });
 
   describe("Land Plane", function() {
-    it("allows an air traffic controller to instruct a plane to land", function() {
-      var plane = {};
+    it("adds a plane to the airport's planes", function() {
       airport.landPlane(plane);
       expect(airport.planes.length).toEqual(1);
       expect(airport.planes).toContain(plane);
+    });
+    it("tells a plane to land", function() {
+      airport.landPlane(plane);
+      expect(plane.land).toHaveBeenCalled();
     });
   });
 });
