@@ -6,5 +6,11 @@ describe("Airport", function() {
   beforeEach(function() {
     airport = new Airport();
   });
+
+  describe("Capacity", function() {
+    it("of an airport defaults to 100", function() {
+      expect(airport.capacity).toEqual(100);
+    });
+  });
 });
 
