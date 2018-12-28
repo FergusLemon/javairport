@@ -1,5 +1,5 @@
 'use stict';
 
 function Airport() {
-  this.capacity = 100;
+  this.DEAFULT_CAPACITY = 100;
 };

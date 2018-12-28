@@ -9,7 +9,7 @@ describe("Airport", function() {
 
   describe("Capacity", function() {
     it("of an airport defaults to 100", function() {
-      expect(airport.capacity).toEqual(100);
+      expect(airport.capacity).toEqual(airport.DEFAULT_CAPACITY);
     });
   });
 });
