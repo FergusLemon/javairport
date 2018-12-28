@@ -21,5 +21,14 @@ describe("Airport", function() {
       expect(airport.planes.length).toEqual(0);
     });
   });
+
+  describe("Land Plane", function() {
+    it("allows an air traffic controller to instruct a plane to land", function() {
+      var plane = {};
+      airport.landPlane(plane);
+      expect(airport.planes.length).toEqual(1);
+      expect(airport.planes).toContain(plane);
+    });
+  });
 });
 
