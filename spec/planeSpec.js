@@ -12,4 +12,11 @@ describe("Plane", function() {
       expect(plane.inTheAir).toEqual(false);
     });
   });
+
+  describe("Take Off", function() {
+    it("means the plane is now in the air", function() {
+      plane.takeOff();
+      expect(plane.inTheAir).toEqual(true);
+    });
+  });
 });
