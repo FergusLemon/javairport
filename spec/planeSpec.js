@@ -15,13 +15,23 @@ describe("Plane", function() {
     });
   });
 
-  describe("Location", function() {
-    it("defaults to 'Depot' for new planes", function() {
-      expect(plane.location).toEqual("Depot");
+  describe("getLocation", function() {
+    describe("before a plane's first flight", function() {
+      it("returns 'Depot'", function() {
+        expect(plane.getLocation()).toEqual("Depot");
+      });
     });
-    it("is null when the plane is flying", function() {
-      plane.takeOff(plane.location);
-      expect(plane.location).toBeNull();
+    describe("when a plane is in the air", function() {
+      it("returns null", function() {
+        plane.takeOff(plane.location);
+        expect(plane.getLocation()).toEqual(null);
+      });
+    });
+    describe("when a plane has landed", function() {
+      it("returns the airport where the plane landed", function() {
+        plane.land(airport);
+        expect(plane.getLocation()).toEqual(airport);
+      });
     });
   });
 
