@@ -14,3 +14,7 @@ Plane.prototype.land = function(destination) {
   this.inFlight = false;
   this.location = destination;
 };
+
+Plane.prototype.isFlying = function() {
+  return(this.inFlight ? true : false);
+};
