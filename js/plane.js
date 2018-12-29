@@ -1,16 +1,16 @@
 'use stict';
 
 function Plane() {
-  this.inTheAir = false;
+  this.inFlight = false;
   this.location = "Depot";
 };
 
-Plane.prototype.takeOff = function(location) {
-  this.inTheAir = true;
+Plane.prototype.takeOff = function(origin) {
+  this.inFlight = true;
   this.location = null;
 };
 
-Plane.prototype.land = function(airport) {
-  this.inTheAir = false;
-  this.location = airport;
+Plane.prototype.land = function(destination) {
+  this.inFlight = false;
+  this.location = destination;
 };

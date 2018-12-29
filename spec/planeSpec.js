@@ -9,9 +9,9 @@ describe("Plane", function() {
     airport = jasmine.createSpyObj('Airport', ['landPlane'])
   });
 
-  describe("inTheAir", function() {
+  describe("inFlight", function() {
     it("returns false when a plane is on the ground", function() {
-      expect(plane.inTheAir).toEqual(false);
+      expect(plane.inFlight).toEqual(false);
     });
   });
 
@@ -28,14 +28,14 @@ describe("Plane", function() {
   describe("Take Off", function() {
     it("puts the plane in the air", function() {
       plane.takeOff(plane.location);
-      expect(plane.inTheAir).toEqual(true);
+      expect(plane.inFlight).toEqual(true);
     });
   });
 
   describe("Land", function() {
     it("puts the plane on the ground", function() {
       plane.land(airport);
-      expect(plane.inTheAir).toEqual(false);
+      expect(plane.inFlight).toEqual(false);
     });
     it("updates the plane's location to the aiport it lands at", function() {
       plane.land(airport);
