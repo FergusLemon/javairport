@@ -35,5 +35,26 @@ describe("Airport", function() {
       expect(plane.land).toHaveBeenCalled();
     });
   });
+
+  describe("isFull", function() {
+    describe("when the default capacity of planes has been reached", function() {
+      it("returns true", function() {
+        var capacity = airport.DEFAULT_CAPACITY;
+        for(var i = 0; i < capacity; i++) {
+          airport.landPlane(plane);
+        }
+        expect(airport.isFull()).toEqual(true);
+      });
+    });
+    describe("when the airport has not reached its default capacity", function() {
+      it("returns false", function() {
+        var halfCapacity = airport.DEFAULT_CAPACITY / 2;
+        for(var i = 0; i < halfCapacity; i++) {
+          airport.landPlane(plane);
+        }
+        expect(airport.isFull()).toEqual(false);
+      });
+    });
+  });
 });
 

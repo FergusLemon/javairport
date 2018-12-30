@@ -1,11 +1,16 @@
 'use stict';
 
 function Airport() {
-  this.DEAFULT_CAPACITY = 100;
+  this.DEFAULT_CAPACITY = 100;
+  this.capacity = this.DEFAULT_CAPACITY;
   this.planes = [];
 };
 
 Airport.prototype.landPlane = function(plane) {
   plane.land(this);
   this.planes.push(plane);
+};
+
+Airport.prototype.isFull = function() {
+  return(this.planes.length >= this.DEFAULT_CAPACITY ? true : false);
 };
