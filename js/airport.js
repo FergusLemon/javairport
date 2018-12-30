@@ -14,3 +14,7 @@ Airport.prototype.landPlane = function(plane) {
 Airport.prototype.isFull = function() {
   return(this.planes.length >= this.DEFAULT_CAPACITY ? true : false);
 };
+
+Airport.prototype.getCapacity = function() {
+  return this.capacity;
+};

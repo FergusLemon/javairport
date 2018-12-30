@@ -15,6 +15,12 @@ describe("Airport", function() {
     });
   });
 
+  describe("getCapacity", function() {
+    it("returns the capacity of the airport", function() {
+      expect(airport.getCapacity()).toEqual(airport.DEFAULT_CAPACITY);
+    });
+  });
+
   describe("Planes", function() {
     it("is an array of all planes at an airport", function() {
       expect(airport.planes).toBeTruthy();
