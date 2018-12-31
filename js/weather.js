@@ -10,5 +10,6 @@ Weather.prototype.createConditions = function() {
 };
 
 Weather.prototype.isStormy = function() {
+  this.createConditions();
   return this.stormy;
 };
