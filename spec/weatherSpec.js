@@ -14,11 +14,15 @@ describe("Weather", function() {
   describe("createConditions", function() {
     it("can create calm weather", function() {
       spyOn(Math, 'random').and.returnValue(calm);
-      expect(weather.createConditions()).toBe('Calm');
+      weather.createConditions();
+      expect(weather.calm).toBe(true);
+      expect(weather.stormy).toBe(false);
     });
     it("can create stormy weather", function() {
       spyOn(Math, 'random').and.returnValue(stormy);
-      expect(weather.createConditions()).toBe('Stormy');
+      weather.createConditions();
+      expect(weather.stormy).toBe(true);
+      expect(weather.calm).toBe(false);
     });
   });
 });
