@@ -9,6 +9,13 @@ describe("Airport", function() {
     plane = jasmine.createSpyObj('Plane', ['land']);
   });
 
+  function fillAirport() {
+    var capacity = airport.DEFAULT_CAPACITY;
+    for(var i = 0; i < capacity; i++) {
+      airport.landPlane(plane);
+    }
+  };
+
   describe("Capacity", function() {
     it("of an airport defaults to 100", function() {
       expect(airport.capacity).toEqual(airport.DEFAULT_CAPACITY);
@@ -41,14 +48,17 @@ describe("Airport", function() {
       expect(plane.land).toHaveBeenCalled();
     });
     describe("when an airport is full", function() {
+      beforeEach(function () {
+        fillAirport();
+      });
       it("throws an error", function() {
-        var capacity = airport.DEFAULT_CAPACITY;
-        for(var i = 0; i < capacity; i++) {
-          airport.landPlane(plane);
-        }
         expect(function() {
           airport.landPlane(plane);
         }).toThrowError("This airport is full, you cannot land here.");
+      });
+      it("does not allow the plane to land", function() {
+        var capacity = airport.DEFAULT_CAPACITY;
+        expect(airport.getCapacity()).toEqual(capacity);
       });
     });
   });
@@ -56,10 +66,7 @@ describe("Airport", function() {
   describe("isFull", function() {
     describe("when the default capacity of planes has been reached", function() {
       it("returns true", function() {
-        var capacity = airport.DEFAULT_CAPACITY;
-        for(var i = 0; i < capacity; i++) {
-          airport.landPlane(plane);
-        }
+        fillAirport();
         expect(airport.isFull()).toEqual(true);
       });
     });
