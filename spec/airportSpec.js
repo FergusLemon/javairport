@@ -40,6 +40,17 @@ describe("Airport", function() {
       airport.landPlane(plane);
       expect(plane.land).toHaveBeenCalled();
     });
+    describe("when an airport is full", function() {
+      it("throws an error", function() {
+        var capacity = airport.DEFAULT_CAPACITY;
+        for(var i = 0; i < capacity; i++) {
+          airport.landPlane(plane);
+        }
+        expect(function() {
+          airport.landPlane(plane);
+        }).toThrowError("This airport is full, you cannot land here.");
+      });
+    });
   });
 
   describe("isFull", function() {

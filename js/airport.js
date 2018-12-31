@@ -7,6 +7,7 @@ function Airport() {
 };
 
 Airport.prototype.landPlane = function(plane) {
+  if(this.isFull()) throw new Error("This airport is full, you cannot land here.");
   plane.land(this);
   this.planes.push(plane);
 };
