@@ -4,9 +4,11 @@ describe("Airport", function() {
   var airport;
   var plane;
   var anotherPlane;
+  var weather;
 
   beforeEach(function() {
-    airport = new Airport();
+    weather = jasmine.createSpyObj('Weather', ['isStormy']);
+    airport = new Airport(weather);
     plane = jasmine.createSpyObj('Plane', ['land', 'takeOff']);
     anotherPlane = jasmine.createSpyObj('Plane', ['land', 'takeOff']);
   });
@@ -49,11 +51,15 @@ describe("Airport", function() {
       airport.landPlane(plane);
       expect(plane.land).toHaveBeenCalled();
     });
+    it("checks the weather is safe for landing a plane", function() {
+      airport.landPlane(plane);
+      expect(weather.isStormy).toHaveBeenCalled();
+    });
+
     describe("when an airport is full", function() {
       beforeEach(function () {
         fillAirport();
       });
-
       it("throws an error", function() {
         expect(function() {
           airport.landPlane(plane);
@@ -62,6 +68,15 @@ describe("Airport", function() {
       it("does not allow the plane to land", function() {
         var capacity = airport.DEFAULT_CAPACITY;
         expect(airport.getCapacity()).toBe(capacity);
+      });
+    });
+
+    describe("when the weather is stormy", function() {
+      it("throws and error", function() {
+        weather.isStormy.and.returnValue(true);
+        expect(function() {
+          airport.landPlane(plane);
+        }).toThrowError("It is too stormy to land at this airport.");
       });
     });
   });
@@ -80,6 +95,7 @@ describe("Airport", function() {
         expect(airport.planes).not.toContain(plane);
       });
     });
+
     describe("when there is more than one plane at the airport", function() {
       beforeEach(function() {
         airport.landPlane(plane);
@@ -89,6 +105,15 @@ describe("Airport", function() {
       it("removes the correct plane from the airport", function() {
         expect(airport.planes).toContain(anotherPlane);
         expect(airport.planes).not.toContain(plane);
+      });
+    });
+
+    describe("when the weather is stormy", function() {
+      it("throws and error", function() {
+        weather.isStormy.and.returnValue(true);
+        expect(function() {
+          airport.clearForTakeOff(plane);
+        }).toThrowError("It is too stormy to take off from this airport.");
       });
     });
   });
@@ -111,4 +136,3 @@ describe("Airport", function() {
     });
   });
 });
-
