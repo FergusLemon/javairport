@@ -12,6 +12,12 @@ Airport.prototype.landPlane = function(plane) {
   this.planes.push(plane);
 };
 
+Airport.prototype.clearForTakeOff = function(plane) {
+  plane.takeOff(this);
+  var index = this.planes.indexOf(plane);
+  this.planes.splice(index, 1);
+};
+
 Airport.prototype.isFull = function() {
   return(this.planes.length >= this.DEFAULT_CAPACITY ? true : false);
 };
