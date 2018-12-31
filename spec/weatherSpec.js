@@ -16,5 +16,9 @@ describe("Weather", function() {
       spyOn(Math, 'random').and.returnValue(calm);
       expect(weather.createConditions()).toBe('Calm');
     });
+    it("can create stormy weather", function() {
+      spyOn(Math, 'random').and.returnValue(stormy);
+      expect(weather.createConditions()).toBe('Stormy');
+    });
   });
 });
