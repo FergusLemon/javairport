@@ -3,10 +3,12 @@
 describe("Plane", function() {
   var plane;
   var airport;
+  var anotherAirport;
 
   beforeEach(function() {
     plane = new Plane();
-    airport = jasmine.createSpyObj('Airport', ['landPlane'])
+    airport = jasmine.createSpyObj('Airport', ['landPlane']);
+    anotherAirport = jasmine.createSpy('Another Airport');
   });
 
   describe("inFlight", function() {
@@ -48,6 +50,14 @@ describe("Plane", function() {
         expect(function() {
           plane.takeOff(plane.location);
         }).toThrowError("This plane is already in the air.");
+      });
+    });
+    describe("when cleared for take off from the wrong airport", function() {
+      it("throws an error", function() {
+        plane.land(airport);
+        expect(function() {
+          plane.takeOff(anotherAirport);
+        }).toThrowError("This plane is at a different location.");
       });
     });
   });
