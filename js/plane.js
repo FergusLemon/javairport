@@ -6,6 +6,7 @@ function Plane() {
 };
 
 Plane.prototype.takeOff = function(origin) {
+  if(this.isFlying()) throw new Error("This plane is already in the air.");
   this.inFlight = true;
   this.location = null;
 };

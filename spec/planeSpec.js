@@ -37,9 +37,18 @@ describe("Plane", function() {
   });
 
   describe("Take Off", function() {
-    it("puts the plane in the air", function() {
+    beforeEach(function() {
       plane.takeOff(plane.location);
+    });
+    it("puts the plane in the air", function() {
       expect(plane.isFlying()).toBe(true);
+    });
+    describe("when a plane is flying", function() {
+      it("throws an error", function() {
+        expect(function() {
+          plane.takeOff(plane.location);
+        }).toThrowError("This plane is already in the air.");
+      });
     });
   });
 
