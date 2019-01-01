@@ -11,6 +11,7 @@ Plane.prototype.takeOff = function(origin) {
 };
 
 Plane.prototype.land = function(destination) {
+  if(!this.isFlying()) throw new Error("This plane is already on the ground.");
   this.inFlight = false;
   this.location = destination;
 };

@@ -29,6 +29,7 @@ describe("Plane", function() {
     });
     describe("when a plane has landed", function() {
       it("returns the airport where the plane landed", function() {
+        plane.takeOff(plane.location);
         plane.land(airport);
         expect(plane.getLocation()).toBe(airport);
       });
@@ -43,6 +44,9 @@ describe("Plane", function() {
   });
 
   describe("Land", function() {
+    beforeEach(function() {
+      plane.takeOff(plane.location);
+    });
     it("puts the plane on the ground", function() {
       plane.land(airport);
       expect(plane.isFlying()).toBe(false);
@@ -50,6 +54,14 @@ describe("Plane", function() {
     it("updates the plane's location to the aiport it lands at", function() {
       plane.land(airport);
       expect(plane.location).toBe(airport);
+    });
+    describe("when the plane is already on the ground", function() {
+      it("throws an error", function() {
+        plane.land(airport);
+        expect(function() {
+          plane.land(airport);
+        }).toThrowError("This plane is already on the ground.");
+      });
     });
   });
 
