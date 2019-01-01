@@ -1,9 +1,9 @@
 'use stict';
 
-function Airport(weather) {
+function Airport(weather, capacity = 100) {
   this.weather = (typeof weather !== 'undefined') ? weather : new Weather();
   this.DEFAULT_CAPACITY = 100;
-  this.capacity = this.DEFAULT_CAPACITY;
+  this.capacity = capacity;
   this.planes = [];
 };
 

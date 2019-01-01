@@ -2,6 +2,7 @@
 
 describe("Airport", function() {
   var airport;
+  var largeAirport;
   var plane;
   var anotherPlane;
   var weather;
@@ -9,6 +10,7 @@ describe("Airport", function() {
   beforeEach(function() {
     weather = jasmine.createSpyObj('Weather', ['isStormy']);
     airport = new Airport(weather);
+    largeAirport = new Airport(weather, 200);
     plane = jasmine.createSpyObj('Plane', ['land', 'takeOff']);
     anotherPlane = jasmine.createSpyObj('Plane', ['land', 'takeOff']);
   });
@@ -23,6 +25,9 @@ describe("Airport", function() {
   describe("capacity", function() {
     it("of an airport defaults to 100", function() {
       expect(airport.capacity).toBe(airport.DEFAULT_CAPACITY);
+    });
+    it("can be set by an airtraffic controller", function() {
+      expect(largeAirport.capacity).toBeGreaterThan(airport.DEFAULT_CAPACITY);
     });
   });
 
