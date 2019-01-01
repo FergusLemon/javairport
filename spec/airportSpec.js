@@ -16,7 +16,7 @@ describe("Airport", function() {
   });
 
   function fillAirport() {
-    var capacity = airport.DEFAULT_CAPACITY;
+    var capacity = airport.capacity;
     for(var i = 0; i < capacity; i++) {
       airport.landPlane(plane);
     }
@@ -34,6 +34,7 @@ describe("Airport", function() {
   describe("getCapacity", function() {
     it("returns the capacity of the airport", function() {
       expect(airport.getCapacity()).toBe(airport.DEFAULT_CAPACITY);
+      expect(largeAirport.getCapacity()).toBeGreaterThan(airport.DEFAULT_CAPACITY);
     });
   });
 

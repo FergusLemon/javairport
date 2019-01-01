@@ -22,7 +22,7 @@ Airport.prototype.clearForTakeOff = function(plane) {
 };
 
 Airport.prototype.isFull = function() {
-  return(this.planes.length >= this.DEFAULT_CAPACITY ? true : false);
+  return(this.planes.length >= this.capacity ? true : false);
 };
 
 Airport.prototype.getCapacity = function() {
